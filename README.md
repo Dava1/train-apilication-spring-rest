@@ -1,1 +1,1 @@
-# train-apilication-spring-rest
+# train-aplication-spring-rest
