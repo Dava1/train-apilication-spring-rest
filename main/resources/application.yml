@@ -1,0 +1,21 @@
+spring:
+    datasource:
+        url: jdbc:postgresql://post:5432/test
+        username: myuser
+        password: mypassword
+        driver-class-name: org.postgresql.Driver
+    liquibase:
+        enabled: true
+        change-log: db/changelog-master.xml
+testcontainers:
+    reuse:
+        enable: true
+    ryuk:
+        disabled: true
+logging:
+    level:
+        root: INFO
+        liquibase: DEBUG
+        org.springframework: DEBUG
+        com.myapp: TRACE
+        org.springframework.boot.autoconfigure.liquibase: DEBUG
