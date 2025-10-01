@@ -1,6 +1,7 @@
 package com.example.myapp.controller;
 
 import com.example.myapp.controller.dto.CreateUserRequest;
+import com.example.myapp.controller.dto.UpdateUserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,13 +41,13 @@ public class UserController {
    }
     
    @PutMapping("/{id}")
-   public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+   public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UpdateUserRequest user) {
     return ResponseEntity.ok(service.updateUser(id, user));
    }
 
    @DeleteMapping("/{id}")
-   public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+   public void deleteUser(@PathVariable Long id) {
        service.deleteUser(id);
-    return ResponseEntity.noContent().build();    
-    }
+       ResponseEntity.noContent().build();
+   }
 }

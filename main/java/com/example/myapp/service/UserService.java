@@ -1,11 +1,11 @@
 package com.example.myapp.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import com.example.myapp.controller.dto.CreateUserRequest;
-import com.example.myapp.controller.dto.CreateUserResponse;
-import org.springframework.http.HttpStatus;
+import com.example.myapp.controller.dto.UpdateUserRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,19 +35,18 @@ public class UserService {
 //       if (repository.findById(user.getId()).isPresent()) {
 //            throw new RuntimeException("User already exist");
 //       }
-        
         var createdUser = new User();
-        createdUser.setUserName(user.name());
+        createdUser.setUserName(user.username());
         createdUser.setEmail(user.email());
-        
+        createdUser.setCreatedAt(LocalDate.now());
         return repository.save(createdUser);
     }
 
     @Transactional
-    public User updateUser(Long userId, User userDetail){
-       return repository.findById(userId).map(curUser ->{
-           curUser.setUserName(userDetail.getUserName());
-           curUser.setEmail(userDetail.getEmail());
+    public User updateUser(Long id, UpdateUserRequest userDetail){
+       return repository.findById(id).map(curUser ->{
+           curUser.setUserName(userDetail.username());
+           curUser.setEmail(userDetail.email());
            return repository.save(curUser); 
        }).orElseThrow(() -> new RuntimeException("User not found"));
     }
@@ -55,5 +54,11 @@ public class UserService {
     @Transactional
     public void deleteUser(Long userId){
         repository.deleteById(userId);
+    }
+    
+    private User convertToUser(UpdateUserRequest updated){
+        User user = new User();
+        
+        return user;
     }
 }

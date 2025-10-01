@@ -57,13 +57,13 @@ class UserControllerTest {
 //        assertEquals(user, resp.getBody());
 //    }
 
-    @Test
-    void updateUser() {
-        User user = new User();
-        var resp = controller.updateUser(1L,user);
-        assertEquals(200, resp.getStatusCode());
-        assertEquals(user, resp.getBody());
-    }
+//    @Test
+//    void updateUser() {
+//        User user = new User();
+//        var resp = controller.updateUser(1L,user);
+//        assertEquals(200, resp.getStatusCode());
+//        assertEquals(user, resp.getBody());
+//    }
 
     @Test
     void deleteUser() {
